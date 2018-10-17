@@ -18,12 +18,16 @@ source /opt/DL/tensorflow/bin/tensorflow-activate
 
 source /opt/DL/tensorboard/bin/tensorboard-activate
 
-### 3. run submit-jupyter.sh
+### 3. vi submit-jupyter.sh (only need to do this the first time)
+pase the following contents
+https://docs.google.com/document/d/1vAHun95oxFvRzQLtTvMPEXe_zUnt5o_ywUFZERazolA/edit
+
+### 3. how to run submit-jupyter.sh:
 bsub -Is -gpu "num=2:mode=exclusive_process:mps=yes" bash submit-jupyter.sh
 
-### 4. ssh tunnel to skygpu in new terminal window
-* copy what looks like this : ssh -N -L 9770:skygpu15:9770
-* <netid>@skynet.nyumc.org
+### 4. An ssh tunnel command to skygpu appears in output of the command terminal
+* The command looks like "ssh -N -L {port}:skygpu11:{port} <netid>@skynet.nyumc.org"
+* Paste this command into a new terminal.
 
 ### 5. copy and paste address from first terminal window into broswer
 * change skygpu to localhost, i.e.:
