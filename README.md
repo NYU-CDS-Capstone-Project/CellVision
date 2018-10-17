@@ -7,10 +7,10 @@ export PATH=/gpfs/share/skynet/apps/anaconda3/bin:$PATH
 
 # Steps for using csbdeep
 
-# 1. ssh to skynet
+### 1. ssh to skynet
 ssh <netid>@skynet.nyumc.org
 
-# 2. activate tensorflow environment
+### 2. activate tensorflow environment
 
 source activate tensorflow-env
 
@@ -18,13 +18,13 @@ source /opt/DL/tensorflow/bin/tensorflow-activate
 
 source /opt/DL/tensorboard/bin/tensorboard-activate
 
-# 3. run submit-jupyter.sh
+### 3. run submit-jupyter.sh
 bsub -Is -gpu "num=2:mode=exclusive_process:mps=yes" bash submit-jupyter.sh
 
-# 4. ssh tunnel to skygpu in new terminal window
-# copy what looks like this : ssh -N -L 9770:skygpu15:9770
-<netid>@skynet.nyumc.org
+### 4. ssh tunnel to skygpu in new terminal window
+* copy what looks like this : ssh -N -L 9770:skygpu15:9770
+* <netid>@skynet.nyumc.org
 
-# 5. copy and paste address from first terminal window into broswer
-# change skygpu to localhost, i.e.:
-# http://localhost:9770/?token=<some token>
+### 5. copy and paste address from first terminal window into broswer
+* change skygpu to localhost, i.e.:
+* http://localhost:9770/?token=<some token>
