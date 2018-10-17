@@ -1,0 +1,2 @@
+# CellVision
+Imaging single molecules in living cells with fluorescence microscopy offers unparalleled datasets that we use to crack unsolved problems in cell biology. Unfortunately, high light doses necessary to acquire high resolution images are harmful to cells, which severely limits our ability to visualize biological processes over long periods of time. We want to use deep learning to dramatically lower the light doses used in fluorescence microscopy while retaining high signal-to-noise ratio. This will allow us to perform experiments that are currently impossible.
