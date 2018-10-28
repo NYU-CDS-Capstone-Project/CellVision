@@ -18,6 +18,12 @@ source /opt/DL/tensorflow/bin/tensorflow-activate
 
 source /opt/DL/tensorboard/bin/tensorboard-activate
 
+To Activate Pytorch
+
+source activate pytorch-env
+
+source /opt/DL/pytorch/bin/pytorch-activate
+
 ### 3. vi submit-jupyter.sh (only need to do this the first time)
 pase the following contents
 https://docs.google.com/document/d/1vAHun95oxFvRzQLtTvMPEXe_zUnt5o_ywUFZERazolA/edit
