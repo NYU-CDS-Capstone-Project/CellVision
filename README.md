@@ -38,3 +38,11 @@ bsub -Is -gpu "num=2:mode=exclusive_process:mps=yes" bash submit-jupyter.sh
 ### 5. copy and paste address from first terminal window into broswer
 * change skygpu to localhost, i.e.:
 * http://localhost:9770/?token=<some token>
+
+# Misc. Notes
+
+In order to make folders/files accessible to everyone, run the following
+* chown :lionnetlab path/to/dir
+
+Run notebook without GPUs:
+* bsub -Is bash submit-jupyter.sh
