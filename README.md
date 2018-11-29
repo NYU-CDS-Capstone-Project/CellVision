@@ -46,3 +46,10 @@ In order to make folders/files accessible to everyone, run the following
 
 Run notebook without GPUs:
 * bsub -Is bash submit-jupyter.sh
+
+Example for bsub python submission 
+
+bsub -Is -gpu "num=1:mode=exclusive_process:mps=yes" python test.py --dataroot ./datasets/facades --name facades_pix2pix --model pix2pix --direction BtoA
+
+bsub -Is -gpu "num=1:mode=exclusive_process:mps=yes" python train.py --dataroot ./datasets/facades --name facades_pix2pix --model pix2pix --direction BtoA --gpu 0 --display_id 0
+
