@@ -64,55 +64,26 @@ def train_test_val(folder_path, channels = 1, train_pp = .6, test_pp = .2, val_p
     #set channel list
     channel_set = list((channels,6))
     
-    #training data
-    train_paths = []
-    for t in train:
-        entry = samples[t]
-        train_paths.append(entry)
+    def finalize_paths(split_set, samples):
+        paths = []
+        for t in split_set:
+            entry = samples[t]
+            paths.append(entry)
 
-    train_final = []
-    for file in train_paths:
-        temp = []
-        for channel_file in file:
-            s,c,z = channel_file.split('_')
-            c_n = c.strip('channel')
-            for c in channel_set:
-                if c_n == str(c):
-                    temp.append(str(root_path)+str(channel_file))
-        train_final.append(temp)   
-
-    #test data
-    test_paths = []
-    for t in test:
-        entry = samples[t]
-        test_paths.append(entry)
-
-    test_final = []
-    for file in test_paths:
-        temp = []
-        for channel_file in file:
-            s,c,z = channel_file.split('_')
-            c_n = c.strip('channel')
-            for c in channel_set:
-                if c_n == str(c):
-                    temp.append(str(root_path)+str(channel_file))
-        test_final.append(temp)  
-
-    #validation data 
-    val_paths = []
-    for t in val:
-        entry = samples[t]
-        val_paths.append(entry)
-
-    val_final = []
-    for file in val_paths:
-        temp = []
-        for channel_file in file:
-            s,c,z = channel_file.split('_')
-            c_n = c.strip('channel')
-            for c in channel_set:
-                if c_n == str(c):
-                    temp.append(str(root_path)+str(channel_file))
-        val_final.append(temp)
+        final = []
+        for file in paths:
+            temp = []
+            for channel_file in file:
+                s,c,z = channel_file.split('_')
+                c_n = c.strip('channel')
+                for c in channel_set:
+                    if c_n == str(c):
+                        temp.append('{}/{}'.format(root_path, channel_file))
+            final.append(sorted(temp))  
+        return final
     
+    train_final = finalize_paths(train, samples)
+    test_final = finalize_paths(test, samples)
+    val_final = finalize_paths(val, samples)
+
     return(train_final, test_final, val_final)
