@@ -14,15 +14,15 @@ class UNet(nn.Module):
 		self.conv = ConvolutionSet(32,32,(3,3))
 		
 	def forward(self, x):
-		e1 = self.encode1(x)
-		e2 = self.encode2(e1)
-		e3 = self.encode3(e2)
+		e1, h1 = self.encode1(x)
+		e2, h2 = self.encode2(e1)
+		e3, h3 = self.encode3(e2)
 
 		c = self.conv(e3)
 
-		d3 = self.decode1(c, e3)
-		d2 = self.decode2(d3, e2)
-		d1 = self.decode3(d2, e1)
+		d3 = self.decode1(c, h3)
+		d2 = self.decode2(d3, h2)
+		d1 = self.decode3(d2, h1)
 		
 		#Need to finish 
 		return d3
@@ -36,13 +36,14 @@ class EncoderLayer(nn.module):
 
 	def forward(self, x):
 		c = self.conv(x)
-		p = self.pool(c2)
-		return F.relu(p)
+		#Return unpooled state for skip connection, put dropout here for skips
+		return self.pool(c), c
+		
 
 class DecoderLayer(nn.module):
         def __init__(input_dim,output_dim, kernel_size):
 		super(DecoderLayer, self).__init__()
-		self.deconv = nn.ConvTranspose2d(input_dim, output_dim, (2,2))
+		self.deconv = nn.ConvTranspose2d(input_dim, output_dim,2,2)
 		self.conv = ConvolutionSet(input_dim, output_dim, kernel_size)
 		
 	def forward(self, x, skip):
